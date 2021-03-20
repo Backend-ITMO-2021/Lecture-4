@@ -1,11 +1,9 @@
 package ru.ifmo.backend_2021;
 
+import ru.ifmo.backend_2021.expressions.Expression;
+
 public class ExpressionParser {
-  public static Dummy parse(String s) { // change Dummy for your expression type
+  public static Expression parse(String s) {
     return null;
   }
 }
-
-interface Dummy {
-} // Remove me before creating pull request
-
