@@ -128,7 +128,7 @@ class ExpressionsTest extends AnyFunSuite {
     testParse("( ( 1*2)  *3)  ", new Multiply(new Multiply(new Const(1), new Const(2)), new Const(3)), x => 1 * 2 * 3);
     testParse("( 1*( 2*3)  )  ", new Multiply(new Const(1), new Multiply(new Const(2), new Const(3))), x => 1 * 2 * 3);
     testParse("  10/2  /3  ", new Divide(new Divide(new Const(10), new Const(2)), new Const(3)), x => 10 / 2 / 3);
-    testParse(" 10/ 3/2    ", new Divide(new Const(10), new Divide(new Const(3), new Const(2))), x => 10 / (3 / 2));
+    testParse(" 10/ (3/2)    ", new Divide(new Const(10), new Divide(new Const(3), new Const(2))), x => 10 / (3 / 2));
     testParse("( ( ( (( x)  ))*( (( x)  )))  + ( ( (( x)  ))-1)  /10  )",
       new Add(
         new Multiply(new Variable("x"), new Variable("x")),
