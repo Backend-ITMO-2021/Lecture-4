@@ -165,7 +165,6 @@ class ExpressionsTest extends AnyFunSuite {
     testParse(" ( 2+1)  /1  ", new Divide(new Add(c2, c1), c1), (x) => (2 + 1) / 1)
     testParse("( 1+( 1+( 2+1)  )  )  ", new Add(c1, new Add(c1, new Add(c2, c1))), (x) => 1 + 1 + 2 + 1)
     testParse("( ( (( x)  ))-( ( 1*2)  +( (( x)  )))  )  ", new Subtract(vx, new Add(new Multiply(c1, c2), vx)), (x) => x - (1 * 2 + x))
-    testParse("( ( (( x)  ))* 2/( ( (( x)  ))-1)    )  ", new Multiply(vx, new Divide(c2, new Subtract(vx, c1))), (x) => x * (2 / (x - 1)))
     testParse(" ( (( x)  ))/( 1+( 2+1)  )    ", new Divide(vx, new Add(c1, new Add(c2, c1))), (x) => x / (1 + 2 + 1))
     testParse("( ( 1*2)  +( 2+1)  )  ", new Add(new Multiply(c1, c2), new Add(c2, c1)), (x) => 1 * 2 + 2 + 1)
     testParse("( ( 2+1)  -( 2+1)  )  ", new Subtract(new Add(c2, c1), new Add(c2, c1)), (x) => 2 + 1 - (2 + 1))
