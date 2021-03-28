@@ -27,7 +27,8 @@ public abstract class BinaryOperator extends Expression implements Operator {
         sb.append(symbol);
         sb.append(" ");
         if (!(right instanceof Operand) && (right.priority > this.priority ||
-                (right.priority == this.priority && !symbol.equals(ADD_SYMBOL)))) {
+                (right.priority == this.priority && ((symbol.equals(SUB_SYMBOL) || symbol.equals(DIV_SYMBOL))
+                        || ((right instanceof BinaryOperator) && !symbol.equals(((BinaryOperator) right).symbol)))))) {
             sb.append(surroundWithBrackets(right.toMiniString()));
         } else {
             sb.append(right.toMiniString());

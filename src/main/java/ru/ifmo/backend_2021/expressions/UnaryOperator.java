@@ -1,6 +1,6 @@
 package ru.ifmo.backend_2021.expressions;
 
-public class UnaryOperator extends Expression {
+public abstract class UnaryOperator extends Expression implements Operator{
     protected Expression expression;
     protected String symbol;
 

@@ -1,5 +1,7 @@
 package ru.ifmo.backend_2021.expressions;
 
+import java.util.Objects;
+
 import static ru.ifmo.backend_2021.expressions.ExpressionConstants.*;
 
 public class Divide extends BinaryOperator {
@@ -10,5 +12,18 @@ public class Divide extends BinaryOperator {
     @Override
     public int evaluate(int x) {
         return left.evaluate(x) / right.evaluate(x);
+    }
+
+    @Override
+    public boolean equals(Expression expression) {
+        if (expression instanceof Divide){
+            return (this.left.equals(((Divide) expression).left) && this.right.equals(((Divide) expression).right));
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, "/", right);
     }
 }

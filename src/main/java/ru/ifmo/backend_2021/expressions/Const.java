@@ -21,6 +21,19 @@ public class Const extends Expression implements Operand{
     }
 
     @Override
+    public int hashCode() {
+        return Integer.valueOf(value).hashCode();
+    }
+
+    @Override
+    public boolean equals(Expression expression) {
+        if (expression instanceof Const){
+            return this.value == (((Const) expression).value);
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return String.valueOf(value);
     }

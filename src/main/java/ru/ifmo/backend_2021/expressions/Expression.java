@@ -9,24 +9,25 @@ public abstract class Expression {
         this.priority = priority;
     }
 
-    public int evaluate(int x) {
-        return 0;
-    }
+    public abstract int evaluate(int x);
 
     public int evaluateWithVariables(Map<String, Integer> variables) {
         return -1;
     }
 
-    public String toMiniString() {
-        return "";
-
-    }
+    public abstract String toMiniString();
 
     protected static String surroundWithBrackets(String value) {
         return "(" + value + ")";
     }
 
-    public boolean equals(Expression expression) {
-        return expression != null && this.evaluate(100) == expression.evaluate(100) && this.evaluate(-100) == expression.evaluate(-100);
+    public abstract boolean equals(Expression expression);
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Expression){
+            return this.equals((Expression) obj);
+        }
+        return false;
     }
 }

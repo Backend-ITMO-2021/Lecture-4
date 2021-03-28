@@ -12,4 +12,12 @@ public class PositiveUnary extends UnaryOperator {
     public int evaluate(int x) {
         return expression.evaluate(x);
     }
+
+    @Override
+    public boolean equals(Expression expression) {
+        if (expression instanceof PositiveUnary){
+            return this.expression.equals(((PositiveUnary) expression).expression);
+        }
+        return false;
+    }
 }

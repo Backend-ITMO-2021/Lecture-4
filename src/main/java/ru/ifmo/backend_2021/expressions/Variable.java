@@ -22,7 +22,20 @@ public class Variable extends Expression implements Operand{
     }
 
     @Override
+    public boolean equals(Expression expression) {
+        if (expression instanceof Variable){
+            return this.name.equals(((Variable) expression).name);
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

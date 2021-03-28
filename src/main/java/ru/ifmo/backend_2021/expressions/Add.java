@@ -1,5 +1,7 @@
 package ru.ifmo.backend_2021.expressions;
 
+import java.util.Set;
+
 import static ru.ifmo.backend_2021.expressions.ExpressionConstants.ADD_PRIORITY;
 import static ru.ifmo.backend_2021.expressions.ExpressionConstants.ADD_SYMBOL;
 
@@ -12,5 +14,19 @@ public class Add extends BinaryOperator {
     @Override
     public int evaluate(int x) {
         return left.evaluate(x) + right.evaluate(x);
+    }
+
+    @Override
+    public boolean equals(Expression expression) {
+        if (expression instanceof Add){
+            return (this.left.equals(((Add) expression).right) && this.right.equals(((Add) expression).left)) ||
+                    (this.left.equals(((Add) expression).left) && this.right.equals(((Add) expression).right));
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Set.of(left, "+", right).hashCode();
     }
 }

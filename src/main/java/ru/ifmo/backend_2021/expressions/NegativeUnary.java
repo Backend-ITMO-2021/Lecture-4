@@ -11,4 +11,12 @@ public class NegativeUnary extends UnaryOperator {
     public int evaluate(int x) {
         return -1 * expression.evaluate(x);
     }
+
+    @Override
+    public boolean equals(Expression expression) {
+        if (expression instanceof NegativeUnary){
+            return this.expression.equals(((NegativeUnary) expression).expression);
+        }
+        return false;
+    }
 }
