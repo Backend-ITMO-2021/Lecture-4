@@ -14,7 +14,7 @@ public abstract class Expression {
     }
 
     public int evaluateWithVariables(Map<String, Integer> variables) {
-        return 0;
+        return -1;
     }
 
     public String toMiniString() {
@@ -26,4 +26,7 @@ public abstract class Expression {
         return "(" + value + ")";
     }
 
+    public boolean equals(Expression expression) {
+        return expression != null && this.evaluate(100) == expression.evaluate(100) && this.evaluate(-100) == expression.evaluate(-100);
+    }
 }
