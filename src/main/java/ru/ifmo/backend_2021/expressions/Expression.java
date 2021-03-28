@@ -11,9 +11,7 @@ public abstract class Expression {
 
     public abstract int evaluate(int x);
 
-    public int evaluateWithVariables(Map<String, Integer> variables) {
-        return -1;
-    }
+    public abstract int evaluateWithVariables(Map<String, Integer> variables);
 
     public abstract String toMiniString();
 

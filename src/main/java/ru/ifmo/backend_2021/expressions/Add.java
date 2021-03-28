@@ -1,5 +1,6 @@
 package ru.ifmo.backend_2021.expressions;
 
+import java.util.Map;
 import java.util.Set;
 
 import static ru.ifmo.backend_2021.expressions.ExpressionConstants.ADD_PRIORITY;
@@ -14,6 +15,11 @@ public class Add extends BinaryOperator {
     @Override
     public int evaluate(int x) {
         return left.evaluate(x) + right.evaluate(x);
+    }
+
+    @Override
+    public int evaluateWithVariables(Map<String, Integer> variables) {
+        return left.evaluateWithVariables(variables) + right.evaluateWithVariables(variables);
     }
 
     @Override

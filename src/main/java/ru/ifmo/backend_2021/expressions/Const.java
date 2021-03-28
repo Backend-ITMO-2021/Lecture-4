@@ -1,5 +1,7 @@
 package ru.ifmo.backend_2021.expressions;
 
+import java.util.Map;
+
 import static ru.ifmo.backend_2021.expressions.ExpressionConstants.OPERAND_PRIORITY;
 
 public class Const extends Expression implements Operand{
@@ -12,6 +14,11 @@ public class Const extends Expression implements Operand{
 
     @Override
     public int evaluate(int x) {
+        return value;
+    }
+
+    @Override
+    public int evaluateWithVariables(Map<String, Integer> variables) {
         return value;
     }
 

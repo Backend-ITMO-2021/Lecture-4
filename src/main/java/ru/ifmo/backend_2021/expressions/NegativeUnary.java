@@ -1,5 +1,7 @@
 package ru.ifmo.backend_2021.expressions;
 
+import java.util.Map;
+
 import static ru.ifmo.backend_2021.expressions.ExpressionConstants.*;
 
 public class NegativeUnary extends UnaryOperator {
@@ -10,6 +12,11 @@ public class NegativeUnary extends UnaryOperator {
     @Override
     public int evaluate(int x) {
         return -1 * expression.evaluate(x);
+    }
+
+    @Override
+    public int evaluateWithVariables(Map<String, Integer> variables) {
+        return -1 * expression.evaluateWithVariables(variables);
     }
 
     @Override
