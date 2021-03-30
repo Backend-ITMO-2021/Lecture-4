@@ -7,17 +7,15 @@ public abstract class Expression {
     return 0;
   }
 
-  ;
+
 
   public int evaluateWithVariables(Map<String, Integer> variables) {
     return 0;
   }
 
-  ;
 
   public String toMiniString() {
     return "";
   }
 
-  ;
 }
