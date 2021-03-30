@@ -45,7 +45,7 @@
     ).toMiniString()
     ```
    должен выдавать `2 * x - 3`.
-5) Реализуйте метод `equals`, проверяющий, что два выражения совпадают. Например,
+5) Переопределите метод `equals`, проверяющий, что два выражения совпадают. Так же надо переопределить `hashCode`. Например,
     ```java
     new Multiply(new Const(2), new Variable("x"))
       .equals(new Multiply(new Const(2), new Variable("x")))
