@@ -2,22 +2,19 @@ package ru.ifmo.backend_2021.expressions;
 
 import java.util.Map;
 
-public abstract class Expression {
-  public int evaluate(int x) {
-    return 0;
-  }
+public interface Expression {
+    int evaluate(int x);
 
-  ;
+    String toMiniString();
 
-  public int evaluateWithVariables(Map<String, Integer> variables) {
-    return 0;
-  }
+    int evaluateWithVariables(Map<String, Integer> variables);
 
-  ;
-
-  public String toMiniString() {
-    return "";
-  }
-
-  ;
+    static int getPriority(Expression expression) {
+        if (expression instanceof Negate) return 0;
+        if (expression instanceof Multiply) return 1;
+        if (expression instanceof Divide) return 1;
+        if (expression instanceof Add) return 2;
+        if (expression instanceof Subtract) return 2;
+        return 3;
+    }
 }
