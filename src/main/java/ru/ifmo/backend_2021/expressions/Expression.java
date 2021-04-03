@@ -3,21 +3,17 @@ package ru.ifmo.backend_2021.expressions;
 import java.util.Map;
 
 public abstract class Expression {
-  public int evaluate(int x) {
-    return 0;
-  }
+  int EXPRESSION_PRIORITY = 0;
 
-  ;
+  public abstract int evaluate(int x);
 
-  public int evaluateWithVariables(Map<String, Integer> variables) {
-    return 0;
-  }
+  public abstract int evaluateWithVariables(Map<String, Integer> variables);
 
-  ;
+  public abstract String toMiniString();
 
-  public String toMiniString() {
-    return "";
-  }
+  @Override
+  public abstract boolean equals(Object o);
 
-  ;
+  @Override
+  public abstract int hashCode();
 }
