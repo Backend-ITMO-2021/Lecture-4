@@ -2,11 +2,8 @@ package ru.ifmo.backend_2021;
 
 import ru.ifmo.backend_2021.expressions.*;
 
-import javax.swing.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
