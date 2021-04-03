@@ -54,16 +54,16 @@ public class ExpressionParser {
 
             Expression second = term();
             switch (operator) {
-                case PLUS -> {
+                case PLUS: {
                     return new Add(first, second);
                 }
-                case MINUS -> {
+                case MINUS: {
                     return new Subtract(first, second);
                 }
-                case MULTIPLIER -> {
+                case MULTIPLIER: {
                     return new Multiply(first, second);
                 }
-                case DIVISION -> {
+                case DIVISION: {
                     return new Divide(first, second);
                 }
             }
