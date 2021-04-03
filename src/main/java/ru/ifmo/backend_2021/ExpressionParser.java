@@ -53,13 +53,20 @@ public class ExpressionParser {
             }
 
             Expression second = term();
-            return switch (operator) {
-                case PLUS -> new Add(first, second);
-                case MINUS -> new Subtract(first, second);
-                case MULTIPLIER -> new Multiply(first, second);
-                case DIVISION -> new Divide(first, second);
-                default -> first;
-            };
+            switch (operator) {
+                case PLUS -> {
+                    return new Add(first, second);
+                }
+                case MINUS -> {
+                    return new Subtract(first, second);
+                }
+                case MULTIPLIER -> {
+                    return new Multiply(first, second);
+                }
+                case DIVISION -> {
+                    return new Divide(first, second);
+                }
+            }
         }
         return first;
     }
@@ -103,7 +110,7 @@ public class ExpressionParser {
             return new Const(Integer.parseInt(next));
         } catch (NumberFormatException ex) {
             if (next.length() > 1 && next.charAt(0) == '-') {
-                return  new Subtract(new Const(0), new Variable(next.substring(1)));
+                return new Subtract(new Const(0), new Variable(next.substring(1)));
             }
             return new Variable(next);
         }
