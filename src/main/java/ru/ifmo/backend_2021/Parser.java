@@ -124,12 +124,15 @@ public class Parser {
         while (true) {
             Token token = tokenAcc.nextToken();
             switch (token.type) {
-                case ADD -> expression = new Add(expression, multdev(tokenAcc));
-                case SUBTRACT -> expression = new Subtract(expression, multdev(tokenAcc));
-                default -> {
+                case ADD:
+                    expression = new Add(expression, multdev(tokenAcc));
+                    break;
+                case SUBTRACT:
+                    expression = new Subtract(expression, multdev(tokenAcc));
+                    break;
+                default:
                     tokenAcc.back();
                     return expression;
-                }
             }
         }
     }
@@ -139,38 +142,40 @@ public class Parser {
         while (true) {
             Token token = tokenAcc.nextToken();
             switch (token.type) {
-                case MULTIPLY -> expression = new Multiply(expression, factor(tokenAcc));
-                case DIVIDE -> expression = new Divide(expression, factor(tokenAcc));
-                default -> {
+                case MULTIPLY:
+                    expression = new Multiply(expression, factor(tokenAcc));
+                    break;
+                case DIVIDE:
+                    expression = new Divide(expression, factor(tokenAcc));
+                    break;
+                default:
                     tokenAcc.back();
                     return expression;
-                }
             }
         }
     }
 
     public static Expression factor(TokenAcc tokenAcc) { // CONST or expr or VARIABLE
         Token token  = tokenAcc.nextToken();
-        Expression expression;
         switch (token.type) {
-            case CONSTANT -> expression = new Const(Integer.parseInt(token.tokenValue));
-            case OPEN_BRACKET -> {
-                expression = expr(tokenAcc); //inner expression
+            case CONSTANT:
+                return new Const(Integer.parseInt(token.tokenValue));
+            case OPEN_BRACKET:
+                Expression expression = expr(tokenAcc); //inner expression
                 tokenAcc.nextToken();
-            }
-            case VARIABLE -> expression = new Variable(token.tokenValue);
-            case NEGATIVE -> {
+                return expression;
+            case VARIABLE:
+                return new Variable(token.tokenValue);
+            case NEGATIVE:
                 Token constOrVariable = tokenAcc.nextToken();
-                expression = switch (constOrVariable.type) {
-                    case CONSTANT -> new Negative(new Const(Integer.parseInt(constOrVariable.tokenValue)));
-                    case VARIABLE -> new Negative(new Variable(constOrVariable.tokenValue));
-
-                    default -> new Const(0);
-                };
-            }
-            default -> expression = new Const(0); //TODO default return
+                switch (constOrVariable.type) {
+                    case CONSTANT:
+                        return new Negative(new Const(Integer.parseInt(constOrVariable.tokenValue)));
+                    case VARIABLE:
+                        return new Negative(new Variable(constOrVariable.tokenValue));
+                }
+            default:
+                return  new Const(0); //TODO default return
         }
-
-        return expression;
     }
 }
