@@ -88,7 +88,8 @@ public class ExpressionParser {
         case PLUS:
           current = new Add(current, secondOperation(tokens));
           break;
-        case FINAL, RIGHT_BR:
+        case FINAL:
+        case RIGHT_BR:
           return current;
       }
     }
@@ -105,7 +106,10 @@ public class ExpressionParser {
         case DIVISION:
           current = new Divide(current, thirdOperation(tokens));
           break;
-        case FINAL, MINUS, PLUS, RIGHT_BR:
+        case FINAL:
+        case MINUS:
+        case PLUS:
+        case RIGHT_BR:
           pos -= 1;
           return current;
       }
