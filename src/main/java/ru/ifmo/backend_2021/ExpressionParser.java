@@ -28,12 +28,16 @@ public class ExpressionParser {
     while (true) {
       ExpressionAnalyzer curExpr = exprList.next();
       switch (curExpr.type) {
-        case PLUS -> value = new Add(value, multdiv(exprList));
-        case MINUS -> value = new Subtract(value, multdiv(exprList));
-        case EOF, CLOSE -> {
+        case PLUS:
+          value = new Add(value, multdiv(exprList));
+          break;
+        case MINUS:
+          value = new Subtract(value, multdiv(exprList));
+          break;
+        case EOF:
+        case CLOSE:
           exprList.back();
           return value;
-        }
       }
     }
   }
@@ -43,12 +47,18 @@ public class ExpressionParser {
     while (true) {
       ExpressionAnalyzer curExpr = exprList.next();
       switch (curExpr.type) {
-        case MUL -> value = new Multiply(value, factor(exprList));
-        case DIV -> value = new Divide(value, factor(exprList));
-        case EOF, CLOSE, PLUS, MINUS -> {
+        case MUL:
+          value = new Multiply(value, factor(exprList));
+          break;
+        case DIV:
+          value = new Divide(value, factor(exprList));
+          break;
+        case EOF:
+        case CLOSE:
+        case PLUS:
+        case MINUS:
           exprList.back();
           return value;
-        }
       }
     }
   }
