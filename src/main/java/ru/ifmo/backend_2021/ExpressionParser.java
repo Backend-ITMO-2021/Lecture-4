@@ -22,11 +22,13 @@ public class ExpressionParser {
             char current = currentChar();
 
             switch (current) {
-                case Utils.ADD -> expression = new Add(expression, mulDiv());
-                case Utils.SUB -> expression = new Subtract(expression, mulDiv());
-                default -> {
-                    return expression;
-                }
+                case Utils.ADD:  
+                  expression = new Add(expression, mulDiv());
+                  break;
+                case Utils.SUB: 
+                  expression = new Subtract(expression, mulDiv());
+                  break;
+                default: return expression;
             }
         }
     }
@@ -38,11 +40,13 @@ public class ExpressionParser {
             char current = currentChar();
 
             switch (current) {
-                case Utils.MUL -> expression = new Multiply(expression, varConst());
-                case Utils.DIV -> expression = new Divide(expression, varConst());
-                default -> {
-                    return expression;
-                }
+                case Utils.MUL:
+                  expression = new Multiply(expression, varConst());
+                  break;
+                case Utils.DIV:
+                  expression = new Divide(expression, varConst());
+                  break;
+                default: return expression;
             }
         }
     }
@@ -65,11 +69,11 @@ public class ExpressionParser {
     }
 
     private Expression getConstValue() {
-        char c = currentChar();
+        char currentChar = currentChar();
         StringBuilder stringBuilder = new StringBuilder();
-        while (Character.isDigit(c)) {
-            stringBuilder.append(c);
-            c = nextChar();
+        while (Character.isDigit(currentChar)) {
+            stringBuilder.append(currentChar);
+            currentChar = nextChar();
         }
         return new Const(Integer.parseInt(stringBuilder.toString()));
     }
