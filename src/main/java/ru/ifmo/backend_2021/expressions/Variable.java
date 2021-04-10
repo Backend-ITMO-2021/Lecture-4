@@ -14,6 +14,9 @@ public class Variable extends Expression{
 
     @Override
     public int evaluate(int x) {
+        if(name.charAt(0) == '-'){
+            return -x;
+        }
         return x;
     }
 
