@@ -15,7 +15,18 @@ public abstract class BinaryOperation implements Expression {
     }
 
     public String toMiniString() {
-        return "";
+        return String.format("%s %s %s",
+                this.left.toMiniString(Expression.priority(this)),
+                this.operation,
+                this.right.toMiniString(Expression.priority(this)));
+    }
+
+    public String toMiniString(int parentPriority) {
+        if (parentPriority > Expression.priority(this)) {
+            return this.toString();
+        }
+
+        return this.toMiniString();
     }
 
     public String toString() {

@@ -18,4 +18,8 @@ public class Variable implements Expression {
     public String toMiniString() {
         return name;
     }
+
+    public String toMiniString(int parentPriority) {
+        return name;
+    }
 }

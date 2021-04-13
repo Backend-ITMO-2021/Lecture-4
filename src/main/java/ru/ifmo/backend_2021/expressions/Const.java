@@ -18,4 +18,8 @@ public class Const implements Expression {
     public String toMiniString() {
         return String.valueOf(this.val);
     }
+
+    public String toMiniString(int parentPriority) {
+        return String.valueOf(this.val);
+    }
 }

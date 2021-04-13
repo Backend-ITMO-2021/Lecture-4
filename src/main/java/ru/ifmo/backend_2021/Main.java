@@ -13,12 +13,20 @@ public class Main {
 //                new Const(3)
 //        ).evaluate(5));
 
-        System.out.println(new Subtract(
-                new Multiply(
+//        System.out.println(new Subtract(
+//                new Multiply(
+//                        new Const(2),
+//                        new Variable("x")
+//                ),
+//                new Const(3)
+//        ).toString());
+
+        System.out.println(new Multiply(
+                new Subtract(
                         new Const(2),
                         new Variable("x")
                 ),
                 new Const(3)
-        ).toString());
+        ).toMiniString());
     }
 }
