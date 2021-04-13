@@ -11,6 +11,10 @@ public class Variable implements Expression {
         return x;
     }
 
+    public String toString() {
+        return name;
+    }
+
     public String toMiniString() {
         return name;
     }

@@ -11,6 +11,10 @@ public class Const implements Expression {
         return this.val;
     }
 
+    public String toString() {
+        return String.valueOf(this.val);
+    }
+
     public String toMiniString() {
         return String.valueOf(this.val);
     }
