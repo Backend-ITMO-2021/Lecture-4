@@ -1,5 +1,7 @@
 package ru.ifmo.backend_2021.expressions;
 
+import java.util.Objects;
+
 public abstract class BinaryOperation implements Expression {
     private Expression left, right;
     private String operation;
@@ -31,6 +33,26 @@ public abstract class BinaryOperation implements Expression {
 
     public String toString() {
         return String.format("(%s %s %s)", this.left.toString(), this.operation, this.right.toString());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof BinaryOperation) {
+            return this.equalsOperation((BinaryOperation) o);
+        }
+
+        return false;
+    }
+
+    private Boolean equalsOperation(BinaryOperation expression) {
+        return this.left.equals(expression.left)
+                && this.right.equals(expression.right)
+                && this.operation.equals(expression.operation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.left, this.right, this.operation);
     }
 
     abstract int calculate(int left, int right);

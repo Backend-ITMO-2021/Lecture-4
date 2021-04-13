@@ -1,5 +1,7 @@
 package ru.ifmo.backend_2021.expressions;
 
+import java.util.Objects;
+
 public class Variable implements Expression {
     private String name;
 
@@ -21,5 +23,19 @@ public class Variable implements Expression {
 
     public String toMiniString(int parentPriority) {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Variable) {
+            return this.name.equals(((Variable) o).name);
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
     }
 }
