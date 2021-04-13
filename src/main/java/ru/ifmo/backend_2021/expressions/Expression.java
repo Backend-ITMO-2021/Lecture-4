@@ -2,22 +2,10 @@ package ru.ifmo.backend_2021.expressions;
 
 import java.util.Map;
 
-public abstract class Expression {
-  public int evaluate(int x) {
-    return 0;
-  }
+public interface Expression {
+  int evaluate(int x);
 
-  ;
+//  int evaluateWithVariables(Map<String, Integer> variables);
 
-  public int evaluateWithVariables(Map<String, Integer> variables) {
-    return 0;
-  }
-
-  ;
-
-  public String toMiniString() {
-    return "";
-  }
-
-  ;
+  String toMiniString();
 }
