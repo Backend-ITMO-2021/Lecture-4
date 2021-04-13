@@ -1,9 +1,10 @@
 package ru.ifmo.backend_2021.expressions;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class Const implements Expression {
-    private int val;
+    protected int val;
 
     public Const(int val) {
         this.val = val;
@@ -13,16 +14,20 @@ public class Const implements Expression {
         return this.val;
     }
 
+    public int evaluateWithVariables(Map<String, Integer> variables) {
+        return this.val;
+    }
+
     public String toString() {
         return String.valueOf(this.val);
     }
 
     public String toMiniString() {
-        return String.valueOf(this.val);
+        return this.toString();
     }
 
-    public String toMiniString(int parentPriority) {
-        return String.valueOf(this.val);
+    public String toMiniString(int parentPriority, String parentOperation, boolean atRight) {
+        return this.toString();
     }
 
     @Override

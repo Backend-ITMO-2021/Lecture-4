@@ -1,5 +1,6 @@
 package ru.ifmo.backend_2021.expressions;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class Variable implements Expression {
@@ -13,6 +14,10 @@ public class Variable implements Expression {
         return x;
     }
 
+    public int evaluateWithVariables(Map<String, Integer> variables) {
+        return variables.containsKey(this.name) ? variables.get(this.name) : 0;
+    }
+
     public String toString() {
         return name;
     }
@@ -21,7 +26,7 @@ public class Variable implements Expression {
         return name;
     }
 
-    public String toMiniString(int parentPriority) {
+    public String toMiniString(int parentPriority, String parentOperation, boolean atRight) {
         return name;
     }
 

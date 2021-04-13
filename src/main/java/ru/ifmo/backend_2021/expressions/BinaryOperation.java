@@ -1,5 +1,6 @@
 package ru.ifmo.backend_2021.expressions;
 
+import java.util.Map;
 import java.util.Objects;
 
 public abstract class BinaryOperation implements Expression {
@@ -16,19 +17,30 @@ public abstract class BinaryOperation implements Expression {
         return this.calculate(this.left.evaluate(x), this.right.evaluate(x));
     }
 
-    public String toMiniString() {
-        return String.format("%s %s %s",
-                this.left.toMiniString(Expression.priority(this)),
-                this.operation,
-                this.right.toMiniString(Expression.priority(this)));
+    public int evaluateWithVariables(Map<String, Integer> variables) {
+        return this.calculate(this.left.evaluateWithVariables(variables), this.right.evaluateWithVariables(variables));
     }
 
-    public String toMiniString(int parentPriority) {
-        if (parentPriority > Expression.priority(this)) {
-            return this.toString();
+    public String toMiniString() {
+        return this.toMiniString(0, "", false);
+    }
+
+    public String toMiniString(int parentPriority, String parentOperation, boolean atRight) {
+        String format = "%s %s %s";
+        if (
+            (parentPriority > Expression.priority(this))
+            || (atRight && (parentOperation.equals(this.operation) && (this.operation.equals("/") || this.operation.equals("-"))))
+            || (atRight && (parentOperation.equals("-") && (this.operation.equals("-") || this.operation.equals("+"))))
+            || (parentOperation.equals("/") && !this.operation.equals("/"))
+            || (atRight && parentOperation.equals("*") && this.operation.equals("/"))
+        ) {
+            format = "(" + format + ")";
         }
 
-        return this.toMiniString();
+        return String.format(format,
+                this.left.toMiniString(Expression.priority(this), this.operation, false),
+                this.operation,
+                this.right.toMiniString(Expression.priority(this), this.operation, true));
     }
 
     public String toString() {
