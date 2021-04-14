@@ -14,6 +14,7 @@ public class ExpressionParser {
     LexicalAnalyzer analyzer = new LexicalAnalyzer(s);
     tokens = analyzer.tokenize();
 //    System.out.println(tokens);
+    pos = 0;
     return expression();
   }
 
@@ -50,9 +51,9 @@ public class ExpressionParser {
       pos++;
       Expression second = factor();
       if (operator.equals("*")) {
-        return new Multiply(first, second);
+        first = new Multiply(first, second);
       } else {
-        return new Divide(first, second);
+        first = new Divide(first, second);
       }
     }
 
@@ -81,7 +82,14 @@ public class ExpressionParser {
     } else if (next.equals("-")) {
       // Unary Minus
       pos++;
-      result = expression();
+      next = tokens.get(pos);
+
+      if (next.equals("(")) {
+        result = expression();
+      } else {
+        result = factor();
+      }
+
       return new UnaryMinus(result);
     }
 

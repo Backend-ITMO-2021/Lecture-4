@@ -69,7 +69,8 @@ public class Main {
 //        Map<String, Integer> variables = new HashMap<>();
 //        variables.put("x", 3);
 //        variables.put("y", 7);
-        Expression exp = ExpressionParser.parse("( ( (( x)  ))+2) ");
-        System.out.println(exp.evaluate(0));
+//        Expression exp = ExpressionParser.parse("(-asbdajsdhaskdahskdashdkjashqqq + (-aaa))");
+//        System.out.println(exp);
+//        System.out.println(exp.evaluate(1));
     }
 }
